@@ -1,0 +1,33 @@
+.head{
+	color: "black";
+	float: center;
+}
+.para{
+	margin-left: 100px;
+	margin-right: 100px;
+	margin-top: 100px;
+	margin-bottom: 100px;
+	font-family: "courier";
+	font-size: 25px;
+	transition-duration: 0.5s;
+}
+
+.button{
+	background-color: grey;
+	border: none;
+	color: white;
+	padding: 10px;
+	text-align: center;
+	text-decoration: none;
+	font-size: 16px;
+	margin: 4px 600px;
+	cursor: pointer;
+	min-width: 250px;
+	border-radius: 12px;
+	transition-duration: 0s;
+
+}
+.button:hover{
+	color: white; 
+    background: black; 
+}
