@@ -101,6 +101,7 @@ def graph(payement_type_=None):
 	messagebox.showinfo("Plotting","Data has been processed ,plotting has started")
 	time.sleep(2)
 	plt.show()
+	messagebox.showinfo("Plotted","Data has been plotted")
 
 def total_graph():
 	DEFAULT_PATH = os.path.join(os.path.dirname(__file__),'appdata.db')
