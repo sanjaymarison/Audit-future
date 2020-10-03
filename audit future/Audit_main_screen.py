@@ -26,7 +26,6 @@ from Tally_excel_sheet import convert_to_excel_sheet
 from Tally_viewer import viewer_api
 import json
 from Audit_upload import upload_to_cloud
-#from Audit_android import start_android_beta
 
 #own module for variables and other settings
 from Tally_date import date
@@ -64,8 +63,9 @@ def window_start():
 	    frame_debit = LabelFrame(window,text="Debited/Credited",bg=bg,fg=fg,border=5,font=(font,16))
 	    frame_debit.grid(row=3,column=0,columnspan=1,rowspan=10,pady=20,padx=100)
 
-	    window_branding = Label(window,bg=bg,fg=fg,font=(font,30),text=company_name)
-	    window_branding.grid(row=1,column=2,sticky=W,columnspan=1,pady=10) 
+	    if status_down == True:
+		    window_branding = Label(window,bg=bg,fg=fg,font=(font,30),text=company_name)
+		    window_branding.grid(row=1,column=2,sticky=W,columnspan=1,pady=10) 
 
 	    label_for_add_todays_details = Label(window,text="ADD TODAY'S REPORT",bg = bg , fg= fg)
 	    label_for_add_todays_details.grid(row=2,column=1,columnspan=3,padx=10,pady=10)
@@ -235,7 +235,7 @@ def window_start():
 	            if provided_payement == "select":
 	            	provided_payement = "Payement"
 
-	            viewer_api(date1=provided_date,amount1=provided_amount,payement1=provided_payement,site1=provided_site,name1=provided_name,category1=provided_category)
+	            viewer_api(date1=provided_date,amount1=provided_amount,payement1=provided_payement,site1=provided_site,name1=provided_name,category1=provided_category,file=str(DEFAULT_PATH))
 
 	        textbox_search_date = Entry(database_search_window,width=20)
 	        textbox_search_date.grid(row=0,column=0,padx=10,pady=10)
