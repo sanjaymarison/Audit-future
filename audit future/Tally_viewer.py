@@ -1,24 +1,52 @@
 from tkinter import *
-from tkinter import ttk 
+from tkinter import ttk
+from tkinter import filedialog
 from styling import *
 import sqlite3
 from Tally_data_arrange import sort_data
 import threading
 
 
-def viewer_api(date1="Date",name1="Name",category1="Category",payement1="Payement",site1="Site",amount1="Amount"):
-	z = 0 
-	if date1 != "Date" or "":
+def viewer_api(date1="Date",name1="Name",category1="Category",payement1="Payement",site1="Site",amount1="Amount",file=DEFAULT_PATH):
+	def backup_():
+		file_name = filedialog.askopenfilename(initialdir=str(backup_path),title="Select backup file")
+		if file_name != "":
+			window_viewer.destroy()
+			viewer_api(file=str(file_name))
+
+	def change_file_():
+		file_name_ = filedialog.askopenfilename(title="Select file to open")
+		if file_name_ != "":
+			window_viewer.destroy()
+			viewer_api(file=str(file_name_))
+	print(file)
+	z = 0
+
+	if date1 == "":
+		date1 = "Date"
+	if name1 == "":
+		name1 = "Name"
+	if category1 == "":
+		category1 = "Category"
+	if payement1 == "":
+		payement1 = "Payement"
+	if site1 == "":
+		site1 = "Site"
+	if amount1 == "":
+		amount1 = "Amount"
+
+
+	if date1 != "Date":
 		z = 1
-	if name1 != "Name" or "":
+	if name1 != "Name":
 		z = 1
-	if category1 != "Category" or "":
+	if category1 != "Category":
 		z = 1
-	if payement1 != "Payement" or "":
+	if payement1 != "Payement":
 		z = 1
-	if site1 != "Site" or "":
+	if site1 != "Site":
 		z = 1
-	if amount1 != "Amount" or "":
+	if amount1 != "Amount":
 		z = 1
 	def search_api():
 		date_viewer_search = str(date_viewer.get())
@@ -27,6 +55,21 @@ def viewer_api(date1="Date",name1="Name",category1="Category",payement1="Payemen
 		payement_viewer_search = str(payement_viewer.get())
 		site_viewer_search = str(site_viewer.get())
 		category_viewer_search = str(category_viewer.get())
+
+
+		if date_viewer_search == "":
+			date_viewer_search = "Date"
+		if name_viewer_search == "":
+			name_viewer_search = "Name"
+		if category_viewer_search == "":
+			category_viewer_search = "Category"
+		if payement_viewer_search == "":
+			payement_viewer_search = "Payement"
+		if site_viewer_search == "":
+			site_viewer_search = "Site"
+		if amount_viewer_search == "":
+			amount_viewer_search = "Amount"
+
 
 		sqlite_statement = "SELECT * FROM TALLY WHERE "
 		sqlite_list = []
@@ -74,6 +117,8 @@ def viewer_api(date1="Date",name1="Name",category1="Category",payement1="Payemen
 		    sqlite_list.append(site_viewer_search)
 
 		tuple(sqlite_list)
+		if sqlite_statement == "SELECT * FROM TALLY WHERE ":
+			sqlite_statement = "SELECT * FROM TALLY"
 		c.execute(sqlite_statement,sqlite_list)
 		column_s_no = 0
 		total_amount = []
@@ -84,12 +129,12 @@ def viewer_api(date1="Date",name1="Name",category1="Category",payement1="Payemen
 			total_amount.append(row[2])
 		label_total.config(text=str("Total amount:" + str(sum(total_amount))))
 
-	conn = sqlite3.connect(DEFAULT_PATH)
+	conn = sqlite3.connect(file)
 	c = conn.cursor()
 	c.execute("SELECT * FROM TALLY")
 
 	window_viewer = Tk()
-	window_viewer.title("Tally viewer")
+	window_viewer.title("Audit viewer")
 	window_viewer.state("zoomed")
 	window_viewer.resizable(False,False)
 
@@ -128,10 +173,12 @@ def viewer_api(date1="Date",name1="Name",category1="Category",payement1="Payemen
 
 	def reset():
 		def reset_confirm():
+			window_viewer.destroy()
 			conn = sqlite3.connect(DEFAULT_PATH)
 			c = conn.cursor()
 			c.execute("DELETE FROM TALLY")
 			conn.commit()
+			viewer_api()
 
 
 		response = messagebox.askyesno("RESET","Are you sure you want to reset? (YOU CANT UNDO THIS)")
@@ -140,7 +187,7 @@ def viewer_api(date1="Date",name1="Name",category1="Category",payement1="Payemen
 		elif response== 0:
 			pass
 
-	
+
 
 	search_viewer = Button(status_viewer,text="Search",width=20,command=search_api)
 	search_viewer.grid(row=1,column=2,columnspan=2,sticky=W+E)
@@ -199,11 +246,15 @@ def viewer_api(date1="Date",name1="Name",category1="Category",payement1="Payemen
 	sort_data_button = Button(data_tools,bg=button_bg,fg=button_fg,font=font,text="Sort data",command=sort_data_and_destroy)
 	sort_data_button.grid(row=0,column=1,sticky=W+E)
 
+	change_file = Button(data_tools,bg=button_bg,fg=button_fg,font=font,text="Change file",command=change_file_)
+	change_file.grid(row=0,column=2,sticky=W+E)
+
+	open_backup = Button(data_tools,bg=button_bg,fg=button_fg,font=font,text="Open Backup",command=backup_)
+	open_backup.grid(row=0,column=3,sticky=W+E)
+
+
 
 	if z == 1:
 		search_api()
 
 	window_viewer.mainloop()
-
-
-
