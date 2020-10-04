@@ -22,7 +22,6 @@ from PIL import Image,ImageTk
 from Audit_graph import graph_canvas
 from Tally_people import advanced_data
 import webbrowser
-from Tally_excel_sheet import convert_to_excel_sheet
 from Tally_viewer import viewer_api
 import json
 from Audit_upload import upload_to_cloud
@@ -30,7 +29,6 @@ from Audit_upload import upload_to_cloud
 #own module for variables and other settings
 from Tally_date import date
 from styling import *
-from Tally_backup import create_backup
 from Tally_settings import setting
 from user_config_window import check_user
 
@@ -39,6 +37,8 @@ failed module need to be replace
 None
 '''
 def window_start():
+
+	#check user settings and start window
     check_user()
     print(colored("Audit future has started","green"))
     window_ = Tk()
@@ -48,7 +48,7 @@ def window_start():
     window_.iconbitmap(image_icon_main_window)
     
 
-
+    #place all the elements in the window
     def put_the_elements():
 	    window = Canvas(window_,bg=bg,border=0,highlightthickness=1, highlightbackground=bg)
 	    window.pack(fill=BOTH,expand=True)
@@ -92,7 +92,7 @@ def window_start():
 	    textbox_for_category = Entry(frame_debit,width=20)
 	    textbox_for_category.grid(row=3,column=0,padx=20,pady=10)
 	    textbox_for_category.config(bg=textbox_bg,fg=textbox_fg,insertbackground=insert_fg)
-	    textbox_for_category.insert(1,"Category")
+	    textbox_for_category.insert(0,"Category")
 	    textbox_for_category.bind("<Button-1>",lambda x: remove_text(textbox_for_category))
 
 
@@ -167,7 +167,7 @@ def window_start():
 
 	            if type_payement == "select":
 	                label_for_error = Label(window,text="Please select a valid type of payement")
-	                label_for_error.grid(row=5,column=1,columnspan=4)
+	                label_for_error.grid(row=5,column=1)
 	                label_for_error.config(bg=bg,fg=fg,font=font)
 	                i += 1
 	            elif type_payement != "select":
@@ -200,8 +200,16 @@ def window_start():
 	                    conn.close()
 
 	                insert_final_database()
+
+	    button_to_put_todays_details = Button(frame_debit,text="ADD",bg=button_bg,fg=button_fg,command=insert_into_database)
+	    button_to_put_todays_details.grid(row=7,column=0,pady=10)
+	    button_to_put_todays_details.config(font=font)
+
+	    label_for_date = Label(window,text=date,bg=bg,fg=fg,font=(font,30))
+	    label_for_date.grid(row=2,column=0,columnspan=1)
+	    label_for_date.config(font=font)
 	                    
-	            
+	    #an unnecessary quit function
 	    def quit():
 	        def sure_quit():
 	            sys.exit()
@@ -217,7 +225,8 @@ def window_start():
 
 	        
 	       
-
+	    #search the database from the main window by takuing the values to search from here
+	    #and giving it to the search api
 	    def search_function():
 
 	        database_search_window = LabelFrame(window,text="Search",bg=bg,fg=fg,border=5,font=(font,16))
@@ -282,20 +291,9 @@ def window_start():
 
 	    	
 
-
+	    #open the audit viewer
 	    def view():
 	    	viewer_api()
-
-
-
-
-	    button_to_put_todays_details = Button(frame_debit,text="ADD",bg=button_bg,fg=button_fg,command=insert_into_database)
-	    button_to_put_todays_details.grid(row=7,column=0,pady=10)
-	    button_to_put_todays_details.config(font=font)
-
-	    label_for_date = Label(window,text=date,bg=bg,fg=fg,font=(font,30))
-	    label_for_date.grid(row=2,column=0,columnspan=1)
-	    label_for_date.config(font=font)
 
 
 	    def delete():
@@ -369,23 +367,6 @@ def window_start():
 
 	            threading.Thread(target=graph("Credited")).start()
 
-	        def debited():
-
-	            threading.Thread(target=graph("Debited")).start()
-
-	        def total():
-
-	            threading.Thread(target=total_graph()).start()
-
-	        button_debited = Button(graph_window,bg=button_bg,fg=button_fg,font=font,text="Debited",command=debited)
-	        button_debited.grid(row=0,column=0,padx=10,pady=10)
-
-	        button_credited = Button(graph_window,bg=button_bg,fg=button_fg,font=font,text="Credited",command=credited)
-	        button_credited.grid(row=0,column=1,padx=10,pady=1)
-
-	        button_total = Button(graph_window,bg=button_bg,fg=button_fg,font=font,text="Total",command=total_graph)
-	        button_total.grid(row=1,column=0,padx=10,pady=1)
-
 
 
 	    def calculator():
@@ -400,13 +381,6 @@ def window_start():
 	            webbrowser.open(help_path)
 	        except:
 	            messagebox.showerror("Error","Couldn't find a browser/file")
-
-	    def export_window():
-	        try:
-	            threading.Thread(target=convert_to_excel_sheet()).start()
-	            messagebox.showinfo("Export", "Export sucessful")
-	        except:
-	            messagebox.showerror("Export","Export unsucessful")
 
 	    calculator_button = Button(top_status,text="Calculator",command=calculator,width=b_wd)
 	    calculator_button.grid(row=0,column=7)
@@ -424,12 +398,6 @@ def window_start():
 
 	    help_button = Button(top_status,bg=button_bg,width=b_wd,fg=button_fg,font=font,text="HELP",command=help_open)
 	    help_button.grid(row=0,column=8)
-
-	    backup_button = Button(top_status,bg=button_bg,width=b_wd,fg=button_fg,font=font,text="Backup",command=create_backup)
-	    backup_button.grid(row=0,column=2)
-
-	    export_button = Button(top_status,bg=button_bg,width=b_wd,fg=button_fg,font=font,text="Export",command=export_window)
-	    export_button.grid(row=0,column=1)
 
 	    full_database = Button(top_status,width=b_wd,text="View",bg=button_bg,fg=button_fg,font=font,command=view)
 	    full_database.grid(row=0,column=0)
