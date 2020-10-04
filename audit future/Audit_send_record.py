@@ -3,7 +3,10 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
-from styling import DEFAULT_PATH,font,button_bg,button_fg,user_name
+try:
+	from styling import DEFAULT_PATH,font,button_bg,button_fg,user_name
+except:
+	pass
 from tkinter import Toplevel,Entry,Button
 
 def send_record():
