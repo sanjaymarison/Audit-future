@@ -2,7 +2,7 @@
 An simple accounting software for construction 🏗 businesses
 
 # To use the app
-Clone the git repository and run the ```Audit_main_screen.py``` file with a python compiler
+Clone the git repository and run the ```setup.py``` to install the necessary packages and start ```Audit_main_screen.py``` file with a python compiler
 
 # Version
 <h4><b>0.0.1 developer beta</b></h4>
