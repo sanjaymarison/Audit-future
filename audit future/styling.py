@@ -1,5 +1,5 @@
 #version details
-version = "0.0.1"
+version = "0.0.2"
 
 import os
 from Tally_date import date
