@@ -30,4 +30,6 @@ Clone the git repository and run the ```Audit_main_screen.py``` file with a pyth
 
 * The app is not optimized for windows/linux and has only been tested in Mac OS
 
+* The feature edit has been disabled due to some bugs experienced during development
+
 * The help has not been updated and is still in production state
