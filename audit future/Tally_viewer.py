@@ -1,11 +1,15 @@
-from tkinter import *
+from tkinter import Label,Button,Entry,Tk,W,S,E,N,LabelFrame,StringVar,DISABLED
 from tkinter import ttk
 from tkinter import filedialog
 from styling import *
 import sqlite3
 from Tally_data_arrange import sort_data
+from Tally_backup import create_backup
 import threading
-
+import string
+import time
+from Tally_excel_sheet import export_window
+from Audit_send_record import send_record
 
 def viewer_api(date1="Date",name1="Name",category1="Category",payement1="Payement",site1="Site",amount1="Amount",file=DEFAULT_PATH):
 	def backup_():
@@ -165,9 +169,9 @@ def viewer_api(date1="Date",name1="Name",category1="Category",payement1="Payemen
 	site_viewer.grid(row=0,column=5)
 	site_viewer.insert(0,site1)
 
-	def sort_data_and_destroy():
+	def sort_data_and_destroy(file):
 		window_viewer.destroy()
-		sort_data()
+		sort_data(file)
 		viewer_api()
 
 
@@ -222,6 +226,77 @@ def viewer_api(date1="Date",name1="Name",category1="Category",payement1="Payemen
 
 	my_tree.configure(yscrollcommand=vertical_scrollbar.set)
 
+	def selected_option_delete():
+		try:
+			x =  my_tree.selection()
+			for selected in x:
+				my_tree.delete(selected)
+				print(selected)
+				conn = sqlite3.connect(file)
+				c = conn.cursor()
+				selected_ = int(selected) + 1
+				c.execute("DELETE FROM TALLY WHERE rowid=?",(selected_,))
+			conn.commit()
+		except:
+			print("User is clicking delete without choosing an option")
+
+
+	def selected_option_edit():
+		#chooses wrong option some times might be buggy 
+		#Not recommended for use
+		def edit_():
+			pass
+
+		ask_new_values = Tk()
+		ask_new_values.title("Edit")
+		ask_new_values.resizable(False,False)
+		label_say = Label(ask_new_values,text="Enter new values")
+		label_say.pack()
+		date_edit = Entry(ask_new_values,font=font)
+		date_edit.pack()
+		name_edit = Entry(ask_new_values,font=font)
+		name_edit.pack()
+		amount_edit = Entry(ask_new_values,font=font)
+		amount_edit.pack()
+		site_edit = Entry(ask_new_values,font=font)
+		site_edit.pack()
+		options = StringVar()
+		category_edit = Entry(ask_new_values,font=font)
+		category_edit.pack()
+		payement_edit = ttk.Combobox(ask_new_values,textvariable=options)
+		payement_edit['values'] = ("Credited","Debited","select")
+		payement_edit.config(width=15)
+		
+
+		x =  my_tree.selection()
+		print(x)
+
+		for num in x:
+			conn = sqlite3.connect(file)
+			c = conn.cursor()
+			print(int(num))
+			num_ = int(num)+1
+			print(num_)
+			c.execute("SELECT * FROM TALLY WHERE rowid=?",(num_,))
+			print(c.fetchall())
+			for row in c.fetchall():
+				print(row)
+				date_edit.insert(0,row[0])
+				name_edit.insert(0,row[1])
+				amount_edit.insert(0,row[2])
+				site_edit.insert(0,row[5])
+				category_edit.insert(0,row[3])
+				if str(row[4]) == "Credited":
+					payement_edit.current(0)
+				else:
+					payement_edit.current(1)
+				print(row[4])
+
+		payement_edit.pack()
+		button_edit = Button(ask_new_values,text="Edit",command=edit_)
+		button_edit.pack()
+		ask_new_values.mainloop()
+
 	#add data
 	column_s_no = 0
 	total_amount = []
@@ -232,7 +307,7 @@ def viewer_api(date1="Date",name1="Name",category1="Category",payement1="Payemen
 		total_amount.append(row[2])
 
 	my_tree.grid(row=2,column=0,pady=40,sticky=N+S+W+E,ipady=2)
-
+	
 	label_total = Label(window_viewer,font=font,text=str("Total amount:" + str(sum(total_amount))))
 	label_total.grid(row=3,column=0)
 
@@ -243,7 +318,7 @@ def viewer_api(date1="Date",name1="Name",category1="Category",payement1="Payemen
 	reset_button.grid(row=0,column=0,pady=10)
 	reset_button.config(bg=button_bg,fg=button_fg,font=font)
 
-	sort_data_button = Button(data_tools,bg=button_bg,fg=button_fg,font=font,text="Sort data",command=sort_data_and_destroy)
+	sort_data_button = Button(data_tools,bg=button_bg,fg=button_fg,font=font,text="Sort data",command=lambda: sort_data_and_destroy(file))
 	sort_data_button.grid(row=0,column=1,sticky=W+E)
 
 	change_file = Button(data_tools,bg=button_bg,fg=button_fg,font=font,text="Change file",command=change_file_)
@@ -251,6 +326,21 @@ def viewer_api(date1="Date",name1="Name",category1="Category",payement1="Payemen
 
 	open_backup = Button(data_tools,bg=button_bg,fg=button_fg,font=font,text="Open Backup",command=backup_)
 	open_backup.grid(row=0,column=3,sticky=W+E)
+
+	delete_record = Button(data_tools,bg=button_bg,fg=button_fg,font=font,text="Delete",command=selected_option_delete)
+	delete_record.grid(row=0,column=4,sticky=W+E)
+
+	edit_record = Button(data_tools,bg=button_bg,fg=button_fg,font=font,text="Edit",command=selected_option_edit,state=DISABLED)
+	edit_record.grid(row=0,column=5,sticky=W+E)
+
+	export_record = Button(data_tools,bg=button_bg,fg=button_fg,font=font,text="Export record",command=export_window)
+	export_record.grid(row=0,column=6,sticky=W+E)
+
+	backup_record = Button(data_tools,bg=button_bg,fg=button_fg,font=font,text="Backup record",command=create_backup)
+	backup_record.grid(row=0,column=7,sticky=W+E)
+
+	send_record_ = Button(data_tools,bg=button_bg,fg=button_fg,font=font,text="Send record",command=send_record)
+	send_record_.grid(row=0,column=8,sticky=W+E)
 
 
 
