@@ -23,7 +23,7 @@ directory_database = os.path.dirname(__file__)
 DEFAULT_PATH = os.path.join(os.path.dirname(__file__), 'appdata.db')
 DEFAULT_PATH1 = os.path.join(os.path.dirname(__file__), 'usersettings.db')
 export_path = str(os.path.join(os.path.dirname(__file__),"audit_export.xlsx"))
-
+app_path = str(os.path.join(os.path.dirname(__file__),"Audit_main_screen.py"))
 
 with open(user_database,"r") as read_file:
 		data_retrieved = json.load(read_file)
