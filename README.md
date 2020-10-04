@@ -6,6 +6,7 @@ Clone the git repository and run the ```setup.py``` to install the necessary pac
 
 # Version
 <h4><b>0.0.2 developer beta</b></h4>
+<h4><b>Stable version not yet released</b></h4>
 
 # App Pictures
 <img src="audit future/doc/front_screen.png" align="center">
