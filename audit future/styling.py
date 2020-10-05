@@ -7,10 +7,15 @@ import json
 from termcolor import colored
 try:
 	from pygame import mixer
-	error_sound = mixer.music.load('error.wav')
-	sucess_sound = mixer.music.load('sucess.wav')
+	mixer.init()
+
+	mixer.music.load('C:/Users/sanja/Desktop/Audit future/audit future/sucess.WAV')
+	mixer.music.set_volume(1)
+	mixer.music.play()
+	time.sleep(0.5)
+	mixer.music.stop()
 except:
-	print(colored("Warning some of the future features of this app might not work with your device","yellow"))
+	print("Pygame/sound files are missing please check to ensure compatibility of this app in the future")
 
 
 #database
