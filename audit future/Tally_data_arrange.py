@@ -1,11 +1,9 @@
 #module to arrange rows in database according to date added
 import sqlite3
-import os
 from Tally_date import date,tomorrows_date
 
-def sort_data():
-	DEFAULT_PATH = os.path.join(os.path.dirname(__file__), 'appdata.db')
-	conn = sqlite3.connect(DEFAULT_PATH)
+def sort_data(file):
+	conn = sqlite3.connect(file)
 	c = conn.cursor()
 
 	 
