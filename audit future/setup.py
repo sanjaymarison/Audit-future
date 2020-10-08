@@ -1,6 +1,6 @@
 import os
 from styling import app_path
-required_packages = ["matplotlib","datetime","termcolor","pillow","pyrebase","pyrebase4","xlsxwriter","kivy","pygame"]
+required_packages = ["matplotlib","datetime","termcolor","pillow","pyrebase","pyrebase4","xlsxwriter","kivy","pygame","babel"]
 i = 0
 not_installed = []
 for element in required_packages:
