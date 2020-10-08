@@ -9,11 +9,14 @@ import string
 import time
 from Tally_excel_sheet import export_window
 from Audit_send_record import send_record
-from number import format_num
 from refresh_database import refresh
 from PIL import ImageTk,Image
+from babel.numbers import format_currency
 
 def viewer_api(date1="Date",name1="Name",category1="Category",payement1="Payement",site1="Site",amount1="Amount",file=DEFAULT_PATH):
+	def format_num(value):
+		amount = format_currency(value, 'INR', locale='en_IN')
+		return amount
 	global img_search
 	img_search = Image.open("/Users/sanjaymarison/Library/Mobile Documents/com~apple~CloudDocs/Audit future/audit future/Resources/search.png")  # PIL solution
 	img_search = img_search.resize((25, 25), Image.ANTIALIAS) #The (250, 250) is (height, width)
