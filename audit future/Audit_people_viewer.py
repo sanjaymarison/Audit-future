@@ -3,12 +3,18 @@ from styling import *
 import sqlite3
 from tkinter import ttk
 from tkinter import messagebox
+from PIL import Image,ImageTk
 
 def people_viewer_api():
+	global img_search
+	img_search = Image.open("/Users/sanjaymarison/Library/Mobile Documents/com~apple~CloudDocs/Audit future/audit future/Resources/search.png")  # PIL solution
+	img_search = img_search.resize((25, 25), Image.ANTIALIAS) #The (250, 250) is (height, width)
+	img_search = ImageTk.PhotoImage(img_search)
+
 	self_bg = "white"
 	self_fg = "black"
 
-	people_view_window = Tk()
+	people_view_window = Toplevel()
 	people_view_window.title("Audit viewer")
 	people_view_window.state('zoomed')
 	people_view_window.resizable(False,False)
@@ -80,7 +86,7 @@ def people_viewer_api():
 	get_people_type_search.insert(0,"People type")
 	get_people_type_search.bind("<Button-1>",lambda x: remove_(get_people_type_search))
 
-	search_people = Button(status_viewer,bg=self_bg,fg=self_fg,font=font,text="Search",command=search_)
+	search_people = Button(status_viewer,bg=self_bg,fg=self_fg,font=font,image=img_search,command=search_)
 	search_people.grid(row=0,column=3,columnspan=2)
 
 	conn = sqlite3.connect(DEFAULT_PATH)
@@ -113,4 +119,3 @@ def people_viewer_api():
 
 	data_display.grid(row=2,column=0,pady=40,columnspan=2,sticky=N+S+W+E,ipady=2)
 
-	people_view_window.mainloop()
