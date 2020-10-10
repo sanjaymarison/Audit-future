@@ -13,77 +13,77 @@ from refresh_database import refresh
 from PIL import ImageTk,Image
 from babel.numbers import format_currency
 
-def viewer_api(date1="Date",name1="Name",category1="Category",payement1="Payement",site1="Site",amount1="Amount",file=DEFAULT_PATH):
+def viewer_api(date1="YYYY/MM/DD",name1="Name",category1="Category",payement1="Payement",site1="Site No",amount1="Amount",file=DEFAULT_PATH):
 	def format_num(value):
 		amount = format_currency(value, 'INR', locale='en_IN')
 		return amount
 	global img_search
-	img_search = Image.open("/Users/sanjaymarison/Library/Mobile Documents/com~apple~CloudDocs/Audit future/audit future/Resources/search.png")  # PIL solution
+	img_search = Image.open(os.path.join(directory_database,"Resources/search.png")) # PIL solution
 	img_search = img_search.resize((25, 25), Image.ANTIALIAS) #The (250, 250) is (height, width)
 	img_search = ImageTk.PhotoImage(img_search)
 
 	global img_add
-	img_add = Image.open("/Users/sanjaymarison/Library/Mobile Documents/com~apple~CloudDocs/Audit future/audit future/Resources/add.png")  # PIL solution
+	img_add = Image.open(os.path.join(directory_database,"Resources/add.png"))  # PIL solution
 	img_add = img_add.resize((25, 25), Image.ANTIALIAS) #The (250, 250) is (height, width)
 	img_add = ImageTk.PhotoImage(img_add)
 
 	global img_upload
-	img_upload = Image.open("/Users/sanjaymarison/Library/Mobile Documents/com~apple~CloudDocs/Audit future/audit future/Resources/upload.png")  # PIL solution
+	img_upload = Image.open(os.path.join(directory_database,"Resources/upload.png"))  # PIL solution
 	img_upload = img_upload.resize((25, 25), Image.ANTIALIAS) #The (250, 250) is (height, width)
 	img_upload = ImageTk.PhotoImage(img_upload)
 
 	global img_info
-	img_info = Image.open("/Users/sanjaymarison/Library/Mobile Documents/com~apple~CloudDocs/Audit future/audit future/Resources/info.png")
+	img_info = Image.open(os.path.join(directory_database,"Resources/info.png"))
 	img_info = img_info.resize((25, 25), Image.ANTIALIAS) #The (250, 250) is (height, width)
 	img_info = ImageTk.PhotoImage(img_info)
 
 	global img_help
-	img_help = Image.open("/Users/sanjaymarison/Library/Mobile Documents/com~apple~CloudDocs/Audit future/audit future/Resources/help.png")
+	img_help = Image.open(os.path.join(directory_database,"Resources/help.png"))
 	img_help = img_help.resize((25, 25), Image.ANTIALIAS) #The (250, 250) is (height, width)
 	img_help = ImageTk.PhotoImage(img_help)
 
 	global img_mail
-	img_mail = Image.open("/Users/sanjaymarison/Library/Mobile Documents/com~apple~CloudDocs/Audit future/audit future/Resources/mail.png")
+	img_mail = Image.open(os.path.join(directory_database,"Resources/mail.png"))
 	img_mail = img_mail.resize((25, 25), Image.ANTIALIAS) #The (250, 250) is (height, width)
 	img_mail = ImageTk.PhotoImage(img_mail)
 
 	global img_sort
-	img_sort = Image.open("/Users/sanjaymarison/Library/Mobile Documents/com~apple~CloudDocs/Audit future/audit future/Resources/sort.png")
+	img_sort = Image.open(os.path.join(directory_database,"Resources/sort.png"))
 	img_sort = img_sort.resize((25, 25), Image.ANTIALIAS) #The (250, 250) is (height, width)
 	img_sort = ImageTk.PhotoImage(img_sort)
 
 	global img_delete
-	img_delete = Image.open("/Users/sanjaymarison/Library/Mobile Documents/com~apple~CloudDocs/Audit future/audit future/Resources/delete.png")  
+	img_delete = Image.open(os.path.join(directory_database,"Resources/delete.png"))  
 	img_delete = img_delete.resize((25, 25), Image.ANTIALIAS) #The (250, 250) is (height, width)
 	img_delete = ImageTk.PhotoImage(img_delete)
 
 	global img_reset
-	img_reset = Image.open("/Users/sanjaymarison/Library/Mobile Documents/com~apple~CloudDocs/Audit future/audit future/Resources/reset.png")  
+	img_reset = Image.open(os.path.join(directory_database,"Resources/reset.png"))  
 	img_reset = img_reset.resize((25, 25), Image.ANTIALIAS) #The (250, 250) is (height, width)
 	img_reset = ImageTk.PhotoImage(img_reset)
 
 	global img_edit
-	img_edit = Image.open("/Users/sanjaymarison/Library/Mobile Documents/com~apple~CloudDocs/Audit future/audit future/Resources/edit.png")  
+	img_edit = Image.open(os.path.join(directory_database,"Resources/edit.png"))  
 	img_edit = img_edit.resize((25, 25), Image.ANTIALIAS) #The (250, 250) is (height, width)
 	img_edit = ImageTk.PhotoImage(img_edit)
 
 	global img_choose_file
-	img_choose_file = Image.open("/Users/sanjaymarison/Library/Mobile Documents/com~apple~CloudDocs/Audit future/audit future/Resources/choose_file.png")  
+	img_choose_file = Image.open(os.path.join(directory_database,"Resources/choose_file.png"))  
 	img_choose_file = img_choose_file.resize((25, 25), Image.ANTIALIAS) #The (250, 250) is (height, width)
 	img_choose_file = ImageTk.PhotoImage(img_choose_file)
 
 	global img_choose_backup
-	img_choose_backup = Image.open("/Users/sanjaymarison/Library/Mobile Documents/com~apple~CloudDocs/Audit future/audit future/Resources/choose_backup.png")  
+	img_choose_backup = Image.open(os.path.join(directory_database,"Resources/choose_backup.png"))  
 	img_choose_backup = img_choose_backup.resize((25, 25), Image.ANTIALIAS) #The (250, 250) is (height, width)
 	img_choose_backup = ImageTk.PhotoImage(img_choose_backup)
 
 	global img_export
-	img_export = Image.open("/Users/sanjaymarison/Library/Mobile Documents/com~apple~CloudDocs/Audit future/audit future/Resources/export.png")  
+	img_export = Image.open(os.path.join(directory_database,"Resources/export.png"))  
 	img_export = img_export.resize((25, 25), Image.ANTIALIAS) #The (250, 250) is (height, width)
 	img_export = ImageTk.PhotoImage(img_export)
 
 	global img_backup
-	img_backup = Image.open("/Users/sanjaymarison/Library/Mobile Documents/com~apple~CloudDocs/Audit future/audit future/Resources/backup.png")  
+	img_backup = Image.open(os.path.join(directory_database,"Resources/backup.png"))  
 	img_backup = img_backup.resize((25, 25), Image.ANTIALIAS) #The (250, 250) is (height, width)
 	img_backup = ImageTk.PhotoImage(img_backup)
 
@@ -94,7 +94,7 @@ def viewer_api(date1="Date",name1="Name",category1="Category",payement1="Payemen
 			window_viewer.destroy()
 			viewer_api(file=str(file_name))
 
-	def change_file_():
+	def butChg_():
 		file_name_ = filedialog.askopenfilename(title="Select file to open")
 		if file_name_ != "":
 			window_viewer.destroy()
@@ -103,7 +103,7 @@ def viewer_api(date1="Date",name1="Name",category1="Category",payement1="Payemen
 	z = 0
 
 	if date1 == "":
-		date1 = "Date"
+		date1 = "YYYY/MM/DD"
 	if name1 == "":
 		name1 = "Name"
 	if category1 == "":
@@ -111,12 +111,12 @@ def viewer_api(date1="Date",name1="Name",category1="Category",payement1="Payemen
 	if payement1 == "":
 		payement1 = "Payement"
 	if site1 == "":
-		site1 = "Site"
+		site1 = "Site No"
 	if amount1 == "":
 		amount1 = "Amount"
 
 
-	if date1 != "Date":
+	if date1 != "YYYY/MM/DD":
 		z = 1
 	if name1 != "Name":
 		z = 1
@@ -124,7 +124,7 @@ def viewer_api(date1="Date",name1="Name",category1="Category",payement1="Payemen
 		z = 1
 	if payement1 != "Payement":
 		z = 1
-	if site1 != "Site":
+	if site1 != "Site No":
 		z = 1
 	if amount1 != "Amount":
 		z = 1
@@ -138,7 +138,7 @@ def viewer_api(date1="Date",name1="Name",category1="Category",payement1="Payemen
 
 
 		if date_viewer_search == "":
-			date_viewer_search = "Date"
+			date_viewer_search = "YYYY/MM/DD"
 		if name_viewer_search == "":
 			name_viewer_search = "Name"
 		if category_viewer_search == "":
@@ -146,7 +146,7 @@ def viewer_api(date1="Date",name1="Name",category1="Category",payement1="Payemen
 		if payement_viewer_search == "":
 			payement_viewer_search = "Payement"
 		if site_viewer_search == "":
-			site_viewer_search = "Site"
+			site_viewer_search = "Site No"
 		if amount_viewer_search == "":
 			amount_viewer_search = "Amount"
 
@@ -154,7 +154,7 @@ def viewer_api(date1="Date",name1="Name",category1="Category",payement1="Payemen
 		sqlite_statement = "SELECT rowid,* FROM TALLY WHERE "
 		sqlite_list = []
 
-		if date_viewer_search != "Date":
+		if date_viewer_search != "YYYY/MM/DD":
 		    if sqlite_statement == "SELECT rowid,* FROM TALLY WHERE ":
 		        sqlite_statement = sqlite_statement + "date=?"
 		    else:
@@ -189,7 +189,7 @@ def viewer_api(date1="Date",name1="Name",category1="Category",payement1="Payemen
 		        sqlite_statement = sqlite_statement + " AND payement=?"
 		    sqlite_list.append(payement_viewer_search)
 
-		if site_viewer_search != "Site":
+		if site_viewer_search != "Site No":
 		    if sqlite_statement == "SELECT rowid,* FROM TALLY WHERE ":
 		        sqlite_statement = sqlite_statement + "site=?"
 		    else:
@@ -207,7 +207,7 @@ def viewer_api(date1="Date",name1="Name",category1="Category",payement1="Payemen
 			column_s_no += 1
 			data_table.insert(parent='',index='end',iid=row[0],text=row[0],values=(row[1],row[2],row[4],row[5],row[6],format_num(row[3])))
 			total_amount.append(row[3])
-		label_total.config(text=str("Total amount:" + format_num(str(sum(total_amount)))))
+		labTol.config(text=str("Total amount:" + format_num(str(sum(total_amount)))))
 
 	conn = sqlite3.connect(file)
 	c = conn.cursor()
@@ -218,30 +218,30 @@ def viewer_api(date1="Date",name1="Name",category1="Category",payement1="Payemen
 	window_viewer.state("normal")
 	window_viewer.resizable(False,False)
 
-	status_viewer = Label(window_viewer)
-	status_viewer.grid(row=0,column=0,columnspan=1)
+	frmViw = Label(window_viewer)
+	frmViw.grid(row=0,column=0,columnspan=1)
 
-	date_viewer = Entry(status_viewer)
+	date_viewer = Entry(frmViw)
 	date_viewer.grid(row=0,column=0)
 	date_viewer.insert(0,date1)
 
-	name_viewer = Entry(status_viewer)
+	name_viewer = Entry(frmViw)
 	name_viewer.grid(row=0,column=1)
 	name_viewer.insert(0,name1)
 
-	amount_viewer = Entry(status_viewer)
+	amount_viewer = Entry(frmViw)
 	amount_viewer.grid(row=0,column=2)
 	amount_viewer.insert(0,amount1)
 
-	category_viewer = Entry(status_viewer)
+	category_viewer = Entry(frmViw)
 	category_viewer.grid(row=0,column=3)
 	category_viewer.insert(0,category1)
 
-	payement_viewer = Entry(status_viewer)
+	payement_viewer = Entry(frmViw)
 	payement_viewer.grid(row=0,column=4)
 	payement_viewer.insert(0,payement1)
 
-	site_viewer = Entry(status_viewer)
+	site_viewer = Entry(frmViw)
 	site_viewer.grid(row=0,column=5)
 	site_viewer.insert(0,site1)
 
@@ -266,10 +266,10 @@ def viewer_api(date1="Date",name1="Name",category1="Category",payement1="Payemen
 			pass
 
 	
-	search_viewer = Button(status_viewer,image=img_search,command=search_api,borderwidth=0,bd=0)
+	search_viewer = Button(frmViw,image=img_search,command=search_api,borderwidth=0,bd=0)
 	search_viewer.grid(row=0,column=6)
 
-	frame_button = Frame(status_viewer)
+	frame_button = Frame(frmViw)
 	frame_button.grid(row=1,column=4,columnspan=3,ipady=0)
 
 
@@ -320,13 +320,11 @@ def viewer_api(date1="Date",name1="Name",category1="Category",payement1="Payemen
 	def selected_option_delete():
 		try:
 			x =  data_table.selection()
-			for selected in x:
-				data_table.delete(selected)
-				print(selected)
-				conn = sqlite3.connect(file)
-				c = conn.cursor()
-				selected_ = int(selected) + 1
-				c.execute("DELETE FROM TALLY WHERE rowid=?",(selected_,))
+			data_table.delete(x[0])
+			print(x[0])
+			conn = sqlite3.connect(file)
+			c = conn.cursor()
+			c.execute("DELETE FROM TALLY WHERE rowid=?",(x[0]))
 			conn.commit()
 			refresh()
 			search_api()
@@ -352,10 +350,9 @@ def viewer_api(date1="Date",name1="Name",category1="Category",payement1="Payemen
 		x =  data_table.selection()
 		print(x)
 
-		num = x[0]
+		num_ = x[0]
 		conn = sqlite3.connect(file)
 		c = conn.cursor()
-		num_ = num
 		c.execute("SELECT * FROM TALLY WHERE rowid=?",(num_,))
 		
 		for row in c.fetchall():
@@ -420,38 +417,38 @@ def viewer_api(date1="Date",name1="Name",category1="Category",payement1="Payemen
 
 	data_table.grid(row=2,column=0,sticky=N+S+W+E)
 	
-	label_total = Label(window_viewer,font=font,text=str("Total amount:" + format_num(str(sum(total_amount)))))
-	label_total.grid(row=3,column=0,pady=20)
+	labTol = Label(window_viewer,font=font,text=str("Total amount:" + format_num(str(sum(total_amount)))))
+	labTol.grid(row=3,column=0,pady=20)
 
-	status_viewer = LabelFrame(window_viewer,border=5)
-	status_viewer.grid(row=4,column=0,columnspan=1)
+	frmViw = LabelFrame(window_viewer,border=5)
+	frmViw.grid(row=4,column=0,columnspan=1)
 
-	reset_button = Button(frame_button,width=22,image=img_reset,command=reset)
-	reset_button.grid(row=0,column=0,pady=10)
+	butRst = Button(frame_button,width=22,image=img_reset,command=reset)
+	butRst.grid(row=0,column=0,pady=10)
 
-	sort_data_button = Button(frame_button,image=img_sort,command=lambda: sort_data_and_destroy(file))
-	sort_data_button.grid(row=0,column=1,sticky=W+E)
+	butSrt = Button(frame_button,image=img_sort,command=lambda: sort_data_and_destroy(file))
+	butSrt.grid(row=0,column=1,sticky=W+E)
 
-	change_file = Button(frame_button,image=img_choose_file,command=change_file_)
-	change_file.grid(row=0,column=2,sticky=W+E)
+	butChg = Button(frame_button,image=img_choose_file,command=butChg_)
+	butChg.grid(row=0,column=2,sticky=W+E)
 
-	open_backup = Button(frame_button,image=img_choose_backup,command=backup_)
-	open_backup.grid(row=0,column=3,sticky=W+E)
+	butOpBa = Button(frame_button,image=img_choose_backup,command=backup_)
+	butOpBa.grid(row=0,column=3,sticky=W+E)
 
-	delete_record = Button(frame_button,image=img_delete,command=selected_option_delete)
-	delete_record.grid(row=0,column=4,sticky=W+E)
+	butDel = Button(frame_button,image=img_delete,command=selected_option_delete)
+	butDel.grid(row=0,column=4,sticky=W+E)
 
-	edit_record = Button(frame_button,image=img_edit,command=selected_option_edit)
-	edit_record.grid(row=0,column=5,sticky=W+E)
+	butEdt = Button(frame_button,image=img_edit,command=selected_option_edit)
+	butEdt.grid(row=0,column=5,sticky=W+E)
 
-	export_record = Button(frame_button,image=img_export,command=export_window)
-	export_record.grid(row=0,column=6,sticky=W+E)
+	butExp = Button(frame_button,image=img_export,command=export_window)
+	butExp.grid(row=0,column=6,sticky=W+E)
 
-	backup_record = Button(frame_button,image=img_backup,command=create_backup)
-	backup_record.grid(row=0,column=7,sticky=W+E)
+	butBac = Button(frame_button,image=img_backup,command=create_backup)
+	butBac.grid(row=0,column=7,sticky=W+E)
 
-	send_record_ = Button(frame_button,image=img_mail,command=send_record)
-	send_record_.grid(row=0,column=8,sticky=W+E)
+	butSnd = Button(frame_button,image=img_mail,command=send_record)
+	butSnd.grid(row=0,column=8,sticky=W+E)
 
 
 	#to run the viewer's search from the main screen if input is provided
