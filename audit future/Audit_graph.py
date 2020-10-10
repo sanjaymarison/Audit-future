@@ -6,6 +6,7 @@ from graphing import graph,total_graph
 from PIL import Image,ImageTk
 import threading
 from termcolor import colored
+import os
 
 
 def graph_canvas(window,window1,window2):
@@ -27,18 +28,18 @@ def graph_canvas(window,window1,window2):
 
 	def credited():
 		print(colored("Starting credited graph","yellow"))
-		loading()
+		pb = loading()
 		graph("Credited")
 		loaded(pb)
 
 	def debited():
 		print(colored("Starting debited graph","yellow"))
-		loading()
+		pb = loading()
 		graph("Debited")
 		loaded(pb)
 
 	def total():
-		loading()
+		pb = loading()
 		total_graph()
 		loaded(pb)
 
@@ -46,13 +47,12 @@ def graph_canvas(window,window1,window2):
 		window5.destroy()
 		window1()
 
-	img1 = Image.open(image_back1)  # PIL solution
-	img1 = img1.resize((50, 50), Image.ANTIALIAS) #The (250, 250) is (height, width)
-	img1 = ImageTk.PhotoImage(img1) # convert to PhotoImage
+	global img_back
+	img_back = Image.open(os.path.join(directory_database,"Resources/back.png")) # PIL solution
+	img_back = img_back.resize((50, 50), Image.ANTIALIAS) #The (250, 250) is (height, width)
+	img_back = ImageTk.PhotoImage(img_back)
 
-
-
-	back_button = Button(window5,height=30,image=img1,bg=button_bg,command=main_screen)
+	back_button = Button(window5,image=img_back,bg=button_bg,command=main_screen)
 	back_button.grid(row=0,column=0)
 
 	graph_label = Label(window5,text="GRAPH",bg=bg,fg=fg,font=(font,40))
