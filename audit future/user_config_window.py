@@ -4,6 +4,7 @@ from styling import *
 from tkinter import *
 from tkinter import messagebox
 import datetime
+import json
 
 
 
@@ -60,7 +61,8 @@ def first_time_user_config_window():
 				"theme": r,
 				"branding": t,
 				"usage": v,
-				"registered-on": time
+				"registered-on": time,
+				"export-path": export_path
 			}
 			with open(user_database,"w") as write_file:
 				json.dump(data,write_file)
