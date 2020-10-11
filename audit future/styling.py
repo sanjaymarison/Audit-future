@@ -1,10 +1,13 @@
 #version details
 version = "0.0.2"
 
-import os
-from Tally_date import date
-import json
-from termcolor import colored
+try:
+	import os
+	from Tally_date import date
+	import json
+	from termcolor import colored
+except:
+	pass
 try:
 	from pygame import mixer
 	mixer.init()
