@@ -1,9 +1,9 @@
+from tkinter import messagebox
+from styling import *
+import time
+from termcolor import colored
 try:
-    from tkinter import messagebox
-    from styling import *
-    import time
     import pyrebase
-    from termcolor import colored
 except:
     print(colored("Audit upload will not function until pyrebase module is installed","red"))
 
