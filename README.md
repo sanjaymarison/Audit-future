@@ -1,3 +1,6 @@
+# Project Status
+This project has been suspended due to poor coding , please do not use this repo , ignore all the below details
+
 # Audit-future
 An simple accounting software for construction 🏗 businesses
 
