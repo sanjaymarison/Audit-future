@@ -1,17 +1,114 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title>Audit-Future</title>
-	<link rel="stylesheet" href="style.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Audit-Future - Terms & Conditions</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		
+		body {
+			font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+			line-height: 1.8;
+			color: #333;
+			background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+			min-height: 100vh;
+			padding: 20px;
+		}
+		
+		.container {
+			max-width: 900px;
+			margin: 0 auto;
+			background: white;
+			border-radius: 15px;
+			box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+			overflow: hidden;
+			animation: fadeIn 0.8s ease-out;
+		}
+		
+		@keyframes fadeIn {
+			from {
+				opacity: 0;
+				transform: translateY(30px);
+			}
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+		
+		.head {
+			background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+			color: white;
+			text-align: center;
+			padding: 60px 20px;
+			font-size: 2.5em;
+			font-weight: 700;
+			letter-spacing: 2px;
+			text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+		}
+		
+		.para {
+			padding: 40px 50px;
+			font-size: 1.1em;
+			color: #444;
+			line-height: 1.9;
+			background: linear-gradient(to bottom, #f9f9f9 0%, #ffffff 100%);
+		}
+		
+		.para strong,
+		.para b {
+			color: #667eea;
+			font-weight: 600;
+		}
+		
+		.button-container {
+			text-align: center;
+			padding: 30px;
+			background: #f5f7fa;
+		}
+		
+		.button {
+			background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+			color: white;
+			padding: 15px 40px;
+			border: none;
+			border-radius: 50px;
+			font-size: 1.1em;
+			font-weight: 600;
+			cursor: pointer;
+			transition: all 0.3s ease;
+			box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+			text-transform: uppercase;
+			letter-spacing: 1px;
+		}
+		
+		.button:hover {
+			transform: translateY(-3px);
+			box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+		}
+		
+		.button:active {
+			transform: translateY(-1px);
+			box-shadow: 0 3px 10px rgba(102, 126, 234, 0.4);
+		}
+		
+		.agreement-text {
+			text-align: center;
+			padding: 20px;
+			color: #666;
+			font-size: 0.95em;
+		}
+	</style>
 </head>
 <body>
-	<div style="clear: both">
-		<h1 class= "head">
-			TERMS OF CONDITIONS
-		</h1>
-	</div>
-	<hr />
-	<p class= "para">
+	<div class="container">
+		<h1 class="head">TERMS & CONDITIONS</h1>
+		<div class="para">
 		MIT License
 
 	Copyright (c) [2020] [Audit-Future]
@@ -35,9 +132,14 @@
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	</B>
-	</p>
-	<p> By using this app you are accepting the terms and conditions</p>
-	<button class="button" onclick="closeit">Agree and exit</button>
+		</div>
+		<div class="agreement-text">
+			<p>By using this app you are accepting the terms and conditions</p>
+		</div>
+		<div class="button-container">
+			<button class="button" onclick="closeit()">Agree and Exit</button>
+		</div>
+	</div>
 	<script src="main.js"></script>
 </body>
 </html>
